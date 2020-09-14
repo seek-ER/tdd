@@ -18,4 +18,12 @@ class MommifierTest {
         assertEquals("amommy",result);
     }
 
+    @Test
+    void should_return_mommified_result_when_mommifier_given_vowel_over_30percent(){
+        String inputString = "abc";
+        Mommifier modifier = new Mommifier();
+        String result = modifier.convert(inputString);
+        assertEquals("amommybc",result);
+    }
+
 }
