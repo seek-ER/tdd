@@ -26,4 +26,12 @@ class MommifierTest {
         assertEquals("amommybc",result);
     }
 
+    @Test
+    void should_return_mommified_result_when_mommifier_given_continuous_vowel_over_30percent(){
+        String inputString = "abiice";
+        Mommifier modifier = new Mommifier();
+        String result = modifier.convert(inputString);
+        assertEquals("amommybiimommycemommy",result);
+    }
+
 }

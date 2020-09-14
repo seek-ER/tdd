@@ -25,11 +25,11 @@ public class Mommifier {
         }
     }
 
-    private boolean isVowel(List vowelList, String c){
+    private boolean isVowel(List<String> vowelList, String c){
         return vowelList.contains(c);
     }
 
-    private int getVowelCountInString(String[] inputStringArray, List vowelList, int sum){
+    private int getVowelCountInString(String[] inputStringArray, List<String> vowelList, int sum){
         for (String inputChar : inputStringArray) {
             if (isVowel(vowelList,inputChar)){
                 sum += 1;
@@ -42,13 +42,23 @@ public class Mommifier {
         return (float)sum/(float) inputStringArray.length >= VOWEL_PERCENT;
     }
 
-    private void addMommy(String[] inputStringArray, List vowelList, StringBuilder result){
-        for (String inputChar : inputStringArray){
-            if (isVowel(vowelList,inputChar)){
-                result.append(inputChar).append(ADD_CONSTANT);
+    private void addMommy(String[] inputStringArray, List<String> vowelList, StringBuilder result){
+        for (int i = 0; i < inputStringArray.length-1; i++) {
+            if (isVowel(vowelList,inputStringArray[i])){
+                if (!isVowel(vowelList,inputStringArray[i+1])){
+                    result.append(inputStringArray[i]).append(ADD_CONSTANT);
+                }else {
+                    result.append(inputStringArray[i]);
+                }
             }else {
-                result.append(inputChar);
+                result.append(inputStringArray[i]);
             }
+        }
+
+        if (isVowel(vowelList,inputStringArray[inputStringArray.length-1])){
+            result.append(inputStringArray[inputStringArray.length-1]).append(ADD_CONSTANT);
+        }else {
+            result.append(inputStringArray[inputStringArray.length-1]);
         }
     }
 }
